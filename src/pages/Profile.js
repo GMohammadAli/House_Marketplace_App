@@ -86,6 +86,8 @@ function Profile() {
     }   
   }
 
+  const onEdit = async(listingId) => navigate(`/edit-listing/${listingId}`)
+
   return (
     <div className="profile">
       <header className="profileHeader">
@@ -130,22 +132,23 @@ function Profile() {
           </form>
         </div>
 
-        <Link to='/create-listing' className='createListing'>
-          <img src={homeIcon} alt="home" /> 
+        <Link to="/create-listing" className="createListing">
+          <img src={homeIcon} alt="home" />
           <p>Sell or Rent your Home</p>
           <img src={arrowRight} alt="arrow right" />
         </Link>
 
         {!loading && listings?.length > 0 && (
           <>
-            <p className='listingText' >Your Listings</p>
-            <ul className='listingList' >
+            <p className="listingText">Your Listings</p>
+            <ul className="listingList">
               {listings.map((listing) => (
-                <ListingItem 
-                key={listing.id}
-                listing={listing.data}
-                id={listing.id}
-                onDelete={() => onDelete(listing.id)}
+                <ListingItem
+                  key={listing.id}
+                  listing={listing.data}
+                  id={listing.id}
+                  onDelete={() => onDelete(listing.id)}
+                  onEdit={() => onEdit(listing.id)}
                 />
               ))}
             </ul>
